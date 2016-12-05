@@ -8,12 +8,16 @@ module CSVImporter
     attribute :column_names, Array[String]
 
     def columns
-      column_names.map do |column_name|
+      @columns ||= column_names.map do |column_name|
         Column.new(
           name: column_name,
           definition: find_column_definition(column_name)
         )
       end
+    end
+
+    def valid_headers
+      @_headers ||= columns.collect {|column| [column.definition.attribute, column.name] if column.definition }.compact.to_h
     end
 
     def column_name_for_model_attribute(attribute)

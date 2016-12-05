@@ -27,6 +27,10 @@ module CSVImporter
       @csv_attributes ||= Hash[header.column_names.zip(row_array)]
     end
 
+    def csv_values
+      @csv_values ||= Hash[header.valid_headers.map {|k,v| [k,csv_attributes[v]]}]
+    end
+
     # Set attributes
     def set_attributes(model)
       header.columns.each do |column|
