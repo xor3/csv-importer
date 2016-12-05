@@ -1,3 +1,4 @@
+# coding: utf-8
 module CSVImporter
   # Define a column. Called from the DSL via `column.
   #
@@ -30,6 +31,7 @@ module CSVImporter
     attribute :to # Symbol or Proc
     attribute :as # Symbol, String, Regexp, Array
     attribute :required, Boolean
+    attribute :ignore, Boolean
 
     # The model attribute that this column targets
     def attribute

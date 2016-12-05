@@ -40,7 +40,7 @@ module CSVImporter
         column_definition = column.definition
         next if column_definition.nil?
 
-        set_attribute(model, column_definition, value)
+        set_attribute(model, column_definition, value) unless column_definition.ignore
       end
 
       after_build_blocks.each { |block| instance_exec(model, &block) }
